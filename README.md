@@ -1,4 +1,4 @@
-# wp-devcontainer
+# Bedrock WordPress Dev Container
 
 A VS Code Dev Container for [WordPress Bedrock](https://roots.io/bedrock/) local development, built for [OrbStack](https://orbstack.dev) on macOS.
 
