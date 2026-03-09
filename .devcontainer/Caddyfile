@@ -38,6 +38,7 @@
 	# Access log
 	log {
 		output stdout
+		format console
 	}
 }
 
