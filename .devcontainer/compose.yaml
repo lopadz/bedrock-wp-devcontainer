@@ -1,0 +1,36 @@
+name: ${PROJECT_NAME}
+
+services:
+  wp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USERNAME: ${DEV_USER}
+        PHP_VERSION: ${PHP_VERSION}
+    container_name: ${PROJECT_NAME}
+    env_file:
+      - .env
+    volumes:
+      - ..:${WORKSPACE_ROOT}:cached
+      - vendor:${WORKSPACE_ROOT}/www/vendor
+      - wp:${WORKSPACE_ROOT}/www/web/wp
+      - mysql:/var/lib/mysql
+      - caddy:/home/${DEV_USER}/.local/share/caddy
+    ports:
+      - "${DB_PORT}:3306"
+    command: >
+      bash -c "
+        sudo rm -f /tmp/supervisor.sock &&
+        sudo -E supervisord -c /etc/supervisord.conf
+      "
+
+volumes:
+  vendor:
+    name: ${PROJECT_NAME}-vendor
+  wp:
+    name: ${PROJECT_NAME}-wp
+  mysql:
+    name: ${PROJECT_NAME}-mysql
+  caddy:
+    name: ${PROJECT_NAME}-caddy

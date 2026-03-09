@@ -1,0 +1,47 @@
+# Bedrock WordPress Caddyfile
+# Local development with auto-SSL
+# Configuration loaded from .env
+
+{
+	# Use local CA for trusted certificates in development
+	local_certs
+}
+
+# Main site configuration
+{$DOMAIN} {
+	# Root directory points to Bedrock's web folder
+	root * {$WORKSPACE_ROOT}/{$WEB_ROOT}
+
+	# Enable PHP-FPM with WordPress permalink support
+	php_fastcgi {$PHP_FPM_SOCKET} {
+		env PATH /usr/local/bin:/usr/bin:/bin
+	}
+
+	# Enable file server
+	file_server
+
+	# Encode responses
+	encode gzip zstd
+
+	# Security headers
+	header {
+		# Enable HSTS
+		Strict-Transport-Security "max-age=31536000;"
+		# Prevent MIME sniffing
+		X-Content-Type-Options "nosniff"
+		# Enable XSS protection
+		X-Frame-Options "SAMEORIGIN"
+		# Remove server header
+		-Server
+	}
+
+	# Access log
+	log {
+		output file {$WORKSPACE_ROOT}/{$ACCESS_LOG}
+	}
+}
+
+# Alternative: serve on localhost as well
+localhost:{$HTTP_PORT}, localhost:{$HTTPS_PORT} {
+	redir https://{$DOMAIN}{uri}
+}

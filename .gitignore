@@ -1,0 +1,11 @@
+# Environment — keep .env.example, ignore the real .env
+.env
+
+# WordPress install (managed by Bedrock/Composer inside the container)
+www/
+
+# macOS
+.DS_Store
+
+# VS Code local settings
+.vscode/

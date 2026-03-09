@@ -1,0 +1,40 @@
+{
+	"name": "Bedrock WordPress Development Container",
+	"dockerComposeFile": "compose.yaml",
+	"service": "wp",
+	"workspaceFolder": "/workspace",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Anthropic.claude-code",
+				"bmewburn.vscode-intelephense-client",
+				"wordpresstoolbox.wordpress-toolbox",
+				"anthonydiametrix.acf-snippet",
+				"mikestead.dotenv",
+				"devsense.composer-php-vscode",
+				"neilbrayfield.php-docblocker",
+				"xdebug.php-debug",
+				"eamodio.gitlens",
+				"usernamehw.errorlens"
+			],
+			"settings": {
+				"php.validate.executablePath": "/usr/bin/php",
+				"terminal.integrated.defaultProfile.linux": "zsh"
+			}
+		}
+	},
+
+	"forwardPorts": [3306],
+
+	"portsAttributes": {
+		"3306": {
+			"label": "MariaDB",
+			"onAutoForward": "silent"
+		}
+	},
+
+	"postCreateCommand": "zsh .devcontainer/post-create.sh",
+
+	"remoteUser": "dev"
+}
