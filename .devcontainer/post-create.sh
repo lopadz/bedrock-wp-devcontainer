@@ -3,9 +3,6 @@ set -e
 
 echo "🚀 Setting up Bedrock WordPress development environment..."
 
-# Create required directories
-mkdir -p www/logs
-
 # Ensure mounted directories have correct permissions
 if [ -d "www/vendor" ]; then
     sudo chown -R $(whoami):$(whoami) www/vendor

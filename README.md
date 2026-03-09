@@ -68,7 +68,7 @@ All project-specific settings live in `.devcontainer/.env`. Copy `.env.example` 
 
 > **PHP versions:** Ubuntu 24.04 ships PHP 8.3 and below in its default package repositories. PHP 8.4+ requires the [ondrej/php PPA](https://launchpad.net/~ondrej/+archive/ubuntu/php), which the Dockerfile adds automatically when `PHP_VERSION` is `8.4` or higher. Supported values: `8.1`, `8.2`, `8.3` (default repos), `8.4` (PPA).
 
-The remaining variables (`DEV_USER`, `WORKSPACE_ROOT`, `DEVCONTAINER_DIR`, `WEB_ROOT`, `PHP_FPM_SOCKET`, `HTTP_PORT`, `HTTPS_PORT`, `ACCESS_LOG`) are stable across projects and rarely need changing. `DEV_USER` is named deliberately to avoid conflicting with the shell's `$USERNAME` variable.
+The remaining variables (`DEV_USER`, `WORKSPACE_ROOT`, `DEVCONTAINER_DIR`, `WEB_ROOT`, `PHP_FPM_SOCKET`, `HTTP_PORT`, `HTTPS_PORT`) are stable across projects and rarely need changing. `DEV_USER` is named deliberately to avoid conflicting with the shell's `$USERNAME` variable.
 
 > **Note:** `devcontainer.json` does not support reading from `.env` files, so three values there are intentionally hardcoded and must stay in sync manually:
 >

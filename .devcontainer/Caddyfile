@@ -37,7 +37,7 @@
 
 	# Access log
 	log {
-		output file {$WORKSPACE_ROOT}/{$ACCESS_LOG}
+		output stdout
 	}
 }
 
